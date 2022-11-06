@@ -1,11 +1,19 @@
 package br.com.cadastrounico.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
-import java.util.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="cadu_002_usuario")
@@ -22,35 +30,41 @@ public class Usuario implements Serializable {
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
     @Column(name="dta_nascimento")
-    private Date dataNascimento;
-
+    private LocalDate dataNascimento;
+    
     @Column(name="nom_email")
     private String email;
-
+    
+    @Column(name="nom_sexo")
+    private String sexo;
+    
+    
     @Column(name="cod_cpf")
     private String cpf;
 
     @Column(name="cod_rg")
     private String rg;
-
+    
     @Column(name="cod_telefone")
     private String telefone;
 
     @Column(name="sta_usuario")
     private String status;
-
+    
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nomeCompleto, Date dataNascimento, String email, String cpf, String rg,String telefone,String status) {
+    public Usuario(Integer id, String nomeCompleto, LocalDate localDate, 
+    		String email,String sexo, String cpf, String rg,String telefone,String status) {
         this.id = id;
         this.nomeCompleto = nomeCompleto;
-        this.dataNascimento = dataNascimento;
+        this.dataNascimento = localDate;
         this.email = email;
+        this.sexo = sexo;
         this.cpf = cpf;
         this.rg = rg;
         this.telefone = telefone;
-        this.status = status;
+        this.status = status; 
     }
 
     public Integer getId() {
@@ -93,20 +107,12 @@ public class Usuario implements Serializable {
         this.rg = rg;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     public String getStatus() {
@@ -116,8 +122,24 @@ public class Usuario implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+    
+    public String getTelefone() {
+        return telefone;
+    }
 
-    @Override
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    
+    public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	@Override
     public int hashCode() {
         return Objects.hash(id);
     }

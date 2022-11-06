@@ -1,5 +1,8 @@
 package br.com.cadastrounico.model;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -13,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="cadu_006_historico")
-public class Historico  {
+public class Historico  implements Serializable {
     private static final long serialVersionUID = 1;
     
     @Id
@@ -22,7 +25,7 @@ public class Historico  {
     private Integer id;
     
     @Column(name="dth_historico")
-    private String historico;
+    private LocalDateTime dthHistorico;
     
     @Column(name="tp_acao")
     private String tipoAcao;
@@ -36,14 +39,14 @@ public class Historico  {
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuario usuario;
-    
+   
     public Historico() {
 	}
-
-	public Historico(Integer id, String historico, String tipoAcao, String descricaoAcao, String ip,Usuario usuario) {
+    
+	public Historico(Integer id, LocalDateTime dthHistorico, String tipoAcao, String descricaoAcao, String ip,Usuario usuario) {
 		super();
 		this.id = id;
-		this.historico = historico;
+		this.dthHistorico = dthHistorico;
 		this.tipoAcao = tipoAcao;
 		this.descricaoAcao = descricaoAcao;
 		this.ip = ip;
@@ -53,23 +56,17 @@ public class Historico  {
 	public Integer getId() {
 		return id;
 	}
-
+	
+	
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getHistorico() {
-		return historico;
-	}
-
-	public void setHistorico(String historico) {
-		this.historico = historico;
 	}
 
 	public String getTipoAcao() {
 		return tipoAcao;
 	}
-
+	
+	
 	public void setTipoAcao(String tipoAcao) {
 		this.tipoAcao = tipoAcao;
 	}
@@ -85,12 +82,31 @@ public class Historico  {
 	public String getIp() {
 		return ip;
 	}
-
+	
+	
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
+	
+	public LocalDateTime getDthHistorico() {
+		return dthHistorico;
+	}
+	
+	
+	public void setDthHistorico(LocalDateTime dthHistorico) {
+		this.dthHistorico = dthHistorico;
+	}
 
-	@Override
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	
 	public int hashCode() {
 		return Objects.hash(id);
 	}

@@ -3,8 +3,11 @@ package br.com.cadastrounico.service;
 import br.com.cadastrounico.dto.SecretariaDTO;
 import br.com.cadastrounico.dto.SecretariaNewDTO;
 import br.com.cadastrounico.model.Secretaria;
+import br.com.cadastrounico.model.Usuario;
 import br.com.cadastrounico.repository.SecretariaRepository;
 import br.com.cadastrounico.repository.UsuarioRepository;
+import br.com.cadastrounico.service.exception.ObjectNotFoundExeption;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +30,10 @@ public class SecretariaService {
 
     public Secretaria findId(Integer id){
         Optional<Secretaria> secretaria = repo.findById(id);
-        return secretaria.orElse(null);
+        if(secretaria.orElse(null) == null) {
+        	throw new ObjectNotFoundExeption("Secretaria não encontrada.");
+        }
+        return secretaria.orElseThrow();
     }
 
     @Transactional

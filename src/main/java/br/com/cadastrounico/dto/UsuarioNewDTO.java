@@ -1,8 +1,13 @@
 package br.com.cadastrounico.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import br.com.cadastrounico.service.validation.UsuarioInsert;
 
 public class UsuarioNewDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -11,25 +16,29 @@ public class UsuarioNewDTO implements Serializable {
     private String nomeCompleto;
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private String email;
+    private String sexo;
+    
+    @CPF
     private String cpf;
     private String rg;
     private String senha;
     private String telefone;
     private String status;
 
-    public UsuarioNewDTO(Integer id, String nomeCompleto, Date dataNascimento, String email, String cpf,
-                         String rg, String senha, String telefone, String status) {
+    public UsuarioNewDTO(Integer id, String nomeCompleto, LocalDate dataNascimento, String email,String sexo,
+    		String cpf, String rg, String senha, String telefone, String status) {
         this.id = id;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.email = email;
+        this.sexo = sexo.toUpperCase();
         this.cpf = cpf;
         this.rg = rg;
         this.senha = senha;
         this.telefone = telefone;
-        this.status = status;
+        this.status = status.toUpperCase();
     }
 
     public Integer getId() {
@@ -64,11 +73,11 @@ public class UsuarioNewDTO implements Serializable {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -103,4 +112,12 @@ public class UsuarioNewDTO implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+	public String getSexo() {
+		return sexo;
+	}
+	
+	 public void setSexo(String sexo) {
+	        this.sexo = sexo;
+	}
 }

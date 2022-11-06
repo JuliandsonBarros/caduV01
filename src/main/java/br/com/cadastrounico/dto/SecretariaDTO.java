@@ -4,22 +4,34 @@ import br.com.cadastrounico.model.Secretaria;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 public class SecretariaDTO implements Serializable {
     private static final long serialVersionUID = 1;
 
     private Integer id;
+    
+    @NotEmpty(message="O preenchimento é obrigatório")
+    @Length(min=5, max=80,message="O tamanho deve está entre 5 e 80 caracteres")
     private String nome;
     private String endereco;
     private String telefone;
+    
+    @Length(min=1, max=1,message="O Tamanho deve ser de 1 caractere")
     private String statusSec;
     private String observacao;
+    
+    public SecretariaDTO() {
+    }
 
     public SecretariaDTO(Secretaria secretaria){
         id = secretaria.getId();
         nome = secretaria.getNome();
         endereco = secretaria.getEndereco();
         telefone = secretaria.getTelefone();
-        statusSec = secretaria.getStatusSec();
+        statusSec = secretaria.getStatusSec().toUpperCase();
         observacao = secretaria.getObservacao();
     }
 

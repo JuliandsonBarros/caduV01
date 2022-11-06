@@ -18,7 +18,7 @@ public class SecretariaNewDTO implements Serializable {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.statusSec = statusSec;
+        this.statusSec = statusSec.toUpperCase();
         this.observacao = observacao;
     }
 
