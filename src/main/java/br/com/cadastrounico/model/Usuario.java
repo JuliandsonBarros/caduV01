@@ -22,137 +22,122 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_usuario")
-    private Integer id;
-
-    @Column(name="nom_usuario")
-    private String nomeCompleto;
+    private Integer id_usuario;
+    private String nom_usuario;
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
-    @Column(name="dta_nascimento")
-    private LocalDate dataNascimento;
+    private LocalDate dta_nascimento;
     
-    @Column(name="nom_email")
-    private String email;
-    
-    @Column(name="nom_sexo")
-    private String sexo;
-    
-    
-    @Column(name="cod_cpf")
-    private String cpf;
-
-    @Column(name="cod_rg")
-    private String rg;
-    
-    @Column(name="cod_telefone")
-    private String telefone;
-
-    @Column(name="sta_usuario")
-    private String status;
+    private String nom_email;
+    private String nom_sexo;
+    private String cod_cpf;
+    private String cod_rg;
+    private String cod_telefone;
+    private String sta_usuario;
     
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nomeCompleto, LocalDate localDate, 
-    		String email,String sexo, String cpf, String rg,String telefone,String status) {
-        this.id = id;
-        this.nomeCompleto = nomeCompleto;
-        this.dataNascimento = localDate;
-        this.email = email;
-        this.sexo = sexo;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.telefone = telefone;
-        this.status = status; 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    
-    public String getSexo() {
-		return sexo;
+    public Usuario(Integer id_usuario, String nom_usuario, LocalDate dta_nascimento, String nom_email, String nom_sexo,
+			String cod_cpf, String cod_rg, String cod_telefone, String sta_usuario) {
+		super();
+		this.id_usuario = id_usuario;
+		this.nom_usuario = nom_usuario;
+		this.dta_nascimento = dta_nascimento;
+		this.nom_email = nom_email;
+		this.nom_sexo = nom_sexo;
+		this.cod_cpf = cod_cpf;
+		this.cod_rg = cod_rg;
+		this.cod_telefone = cod_telefone;
+		this.sta_usuario = sta_usuario;
 	}
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
+	public Integer getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(Integer id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+
+	public String getNom_usuario() {
+		return nom_usuario;
+	}
+
+	public void setNom_usuario(String nom_usuario) {
+		this.nom_usuario = nom_usuario;
+	}
+
+	public LocalDate getDta_nascimento() {
+		return dta_nascimento;
+	}
+
+	public void setDta_nascimento(LocalDate dta_nascimento) {
+		this.dta_nascimento = dta_nascimento;
+	}
+
+	public String getNom_email() {
+		return nom_email;
+	}
+
+	public void setNom_email(String nom_email) {
+		this.nom_email = nom_email;
+	}
+
+	public String getNom_sexo() {
+		return nom_sexo;
+	}
+
+	public void setNom_sexo(String nom_sexo) {
+		this.nom_sexo = nom_sexo;
+	}
+
+	public String getCod_cpf() {
+		return cod_cpf;
+	}
+
+	public void setCod_cpf(String cod_cpf) {
+		this.cod_cpf = cod_cpf;
+	}
+
+	public String getCod_rg() {
+		return cod_rg;
+	}
+
+	public void setCod_rg(String cod_rg) {
+		this.cod_rg = cod_rg;
+	}
+
+	public String getCod_telefone() {
+		return cod_telefone;
+	}
+
+	public void setCod_telefone(String cod_telefone) {
+		this.cod_telefone = cod_telefone;
+	}
+
+	public String getSta_usuario() {
+		return sta_usuario;
+	}
+
+	public void setSta_usuario(String sta_usuario) {
+		this.sta_usuario = sta_usuario;
 	}
 
 	@Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+	public int hashCode() {
+		return Objects.hash(id_usuario);
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Usuario other = (Usuario) obj;
-        return Objects.equals(id, other.id);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(id_usuario, other.id_usuario);
+	}
 }

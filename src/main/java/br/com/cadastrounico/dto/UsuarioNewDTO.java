@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.cadastrounico.service.validation.UsuarioInsert;
 
 public class UsuarioNewDTO implements Serializable {
     private static final long serialVersionUID = 1L;

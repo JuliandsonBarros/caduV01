@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +26,9 @@ import br.com.cadastrounico.service.HistoricoService;
 import br.com.cadastrounico.service.IPAddress;
 import br.com.cadastrounico.service.UsuarioService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(value = "/usuarios")
+@RequestMapping(value = "/cadu-rest-api/usuarios")
 public class UsuarioController {
 
 	@Autowired
@@ -59,7 +61,7 @@ public class UsuarioController {
         model.addAttribute("clienteIPAddress", clientIPAddress);
         histService.cadastraHistotico("Cadastro Usúario", "C",clientIPAddress, LocalDateTime.now());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(usuarioSalvo.getId()).toUri();
+                .buildAndExpand(usuarioSalvo.getId_usuario()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
@@ -67,7 +69,7 @@ public class UsuarioController {
 	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioDTO usuarioDTO, @PathVariable Integer id,
 			HttpServletRequest request, Model model) {
 		Usuario usuarioSalvo = service.fromDTO(usuarioDTO);//
-		usuarioSalvo.setId(id);
+		usuarioSalvo.setId_usuario(id);
 		usuarioSalvo = service.update(usuarioSalvo);
 		String clientIPAddress = ipAdress.getClientIPAddress(request);
 		model.addAttribute("clienteIPAddress", clientIPAddress);
@@ -79,7 +81,7 @@ public class UsuarioController {
 	public ResponseEntity<Void> delete(@RequestBody UsuarioDeleteDTO usuarioDeleteDTO, @PathVariable Integer id,
 			HttpServletRequest request, Model model) {
 		Usuario usuarioSalvo = service.fromDTO(usuarioDeleteDTO);//
-		usuarioSalvo.setId(id);
+		usuarioSalvo.setId_usuario(id);
 		usuarioSalvo = service.delete(usuarioSalvo);
 		String clientIPAddress = ipAdress.getClientIPAddress(request);
 		model.addAttribute("clienteIPAddress", clientIPAddress);

@@ -5,68 +5,78 @@ import java.io.Serializable;
 public class SecretariaNewDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
-    private String nome;
-    private String endereco;
-    private String telefone;
-    private String statusSec;
-    private String observacao;
+    private Integer id_secretaria;
+    private String nom_secretaria;
+    private String nom_endereco;
+    private String cod_telefone;
+    private String sta_secretaria;
+    private String des_observacao;
+    private UsuarioDTO usuario;
 
     public SecretariaNewDTO(Integer id, String nome, String endereco, String telefone, String statusSec,
-                            String observacao) {
-        this.id = id;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.statusSec = statusSec.toUpperCase();
-        this.observacao = observacao;
+                            String observacao, UsuarioDTO usuario) {
+        this.id_secretaria = id;
+        this.nom_secretaria = nome;
+        this.nom_endereco = endereco;
+        this.cod_telefone = telefone;
+        this.sta_secretaria = statusSec;
+        this.des_observacao = observacao;
+        this.usuario = usuario;
     }
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId_secretaria() {
+		return id_secretaria;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId_secretaria(Integer id_secretaria) {
+		this.id_secretaria = id_secretaria;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNom_secretaria() {
+		return nom_secretaria;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNom_secretaria(String nom_secretaria) {
+		this.nom_secretaria = nom_secretaria;
+	}
 
-    public String getEndereco() {
-        return endereco;
-    }
+	public String getNom_endereco() {
+		return nom_endereco;
+	}
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+	public void setNom_endereco(String nom_endereco) {
+		this.nom_endereco = nom_endereco;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public String getCod_telefone() {
+		return cod_telefone;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public void setCod_telefone(String cod_telefone) {
+		this.cod_telefone = cod_telefone;
+	}
 
-    public String getStatusSec() {
-        return statusSec;
-    }
+	public String getSta_secretaria() {
+		return sta_secretaria;
+	}
 
-    public void setStatusSec(String statusSec) {
-        this.statusSec = statusSec;
-    }
+	public void setSta_secretaria(String sta_secretaria) {
+		this.sta_secretaria = sta_secretaria;
+	}
 
-    public String getObservacao() {
-        return observacao;
-    }
+	public String getDes_observacao() {
+		return des_observacao;
+	}
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
+	public void setDes_observacao(String des_observacao) {
+		this.des_observacao = des_observacao;
+	}
+
+	public UsuarioDTO getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioDTO usuario) {
+		this.usuario = usuario;
+	}
 }

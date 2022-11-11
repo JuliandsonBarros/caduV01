@@ -1,6 +1,6 @@
-package br.com.cadastrounico.service.validaCPF;
+//package br.com.cadastrounico.service.validaCPF;
 
-public class ValidaCPF {
+/*public class ValidaCPF {
 
     // CPF
     private static final int[] WEIGHT_SSN = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
@@ -30,8 +30,8 @@ public class ValidaCPF {
     /**
      * Valida CPF
      */
-    public static boolean isValidCpf(String ssn) {
-        if (ssn == null || !ssn.matches("\\d{11}") || ssn.matches(ssn.charAt(0) + "{11}")) return false;
-        return check(ssn, 9, WEIGHT_SSN);
-    }
-}
+   // public static boolean isValidCpf(String ssn) {
+      //  if (ssn == null || !ssn.matches("\\d{11}") || ssn.matches(ssn.charAt(0) + "{11}")) return false;
+      //  return check(ssn, 9, WEIGHT_SSN);
+   // }*
+//}

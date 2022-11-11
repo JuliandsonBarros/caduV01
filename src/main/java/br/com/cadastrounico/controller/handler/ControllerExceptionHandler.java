@@ -32,10 +32,4 @@ public class ControllerExceptionHandler {
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 	}
-
-	@ExceptionHandler(IllegalStateException.class)
-	public ResponseEntity<ErroPadrao> CPFInvalido(IllegalStateException e, HttpServletRequest request) {
-		ErroPadrao erro = new ErroPadrao(HttpStatus.NOT_FOUND.value(), "CPF inválido", System.currentTimeMillis());
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
-	}
 }

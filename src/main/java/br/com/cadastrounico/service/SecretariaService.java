@@ -3,7 +3,6 @@ package br.com.cadastrounico.service;
 import br.com.cadastrounico.dto.SecretariaDTO;
 import br.com.cadastrounico.dto.SecretariaNewDTO;
 import br.com.cadastrounico.model.Secretaria;
-import br.com.cadastrounico.model.Usuario;
 import br.com.cadastrounico.repository.SecretariaRepository;
 import br.com.cadastrounico.repository.UsuarioRepository;
 import br.com.cadastrounico.service.exception.ObjectNotFoundExeption;
@@ -23,6 +22,9 @@ public class SecretariaService {
 
     @Autowired
     private UsuarioRepository usuarioRepo;
+    
+    @Autowired
+    private UsuarioService usuarioSevice;
 
     public List<Secretaria> findAll(){
         return repo.findAll();
@@ -36,35 +38,33 @@ public class SecretariaService {
         return secretaria.orElseThrow();
     }
 
-    @Transactional
-    public Secretaria insert(Secretaria obj){
-        obj.setId(null);
-        repo.save(obj);
-        return obj;
-    }
+	@Transactional
+	public Secretaria insert(Secretaria obj) {
+		obj.getId_secretaria();
+		return repo.save(obj);
+	}
 
     public Secretaria update(Secretaria secretaria){
-        Secretaria novaSecretaria = findId((secretaria.getId()));
+        Secretaria novaSecretaria = findId((secretaria.getId_secretaria()));
         atualizaBanco(novaSecretaria, secretaria);
         return repo.save(novaSecretaria);
     }
 
     public Secretaria fromDTO(SecretariaDTO objDto){
-        return new Secretaria(objDto.getId(), objDto.getNome(), objDto.getEndereco(), objDto.getTelefone(),
-                objDto.getStatusSec(), objDto.getObservacao(),null);
+        return new Secretaria(objDto.getId_secretaria(), objDto.getNom_secretaria(),objDto.getNom_endereco()
+        		,objDto.getCod_telefone(),objDto.getSta_secretaria(),objDto.getDes_observacao(), objDto.getUsuario());
     }
 
     public Secretaria fromDTO(SecretariaNewDTO objDto){
-        Secretaria sec = new Secretaria(null, objDto.getNome(), objDto.getEndereco(), objDto.getTelefone(),
-                objDto.getStatusSec(), objDto.getObservacao(),null);
-        return sec;
+         return new Secretaria(null, objDto.getNom_secretaria(), objDto.getNom_endereco(), objDto.getCod_telefone(),
+                objDto.getSta_secretaria(), objDto.getDes_observacao(), usuarioSevice.fromDTO(objDto.getUsuario()));
     }
 
     private void atualizaBanco(Secretaria novaSecretaria, Secretaria secretaria) {
-        novaSecretaria.setNome(secretaria.getNome());
-        novaSecretaria.setEndereco(secretaria.getEndereco());
-        novaSecretaria.setTelefone(secretaria.getTelefone());
-        novaSecretaria.setStatusSec(secretaria.getStatusSec());
-        novaSecretaria.setObservacao(secretaria.getObservacao());
+        novaSecretaria.setNom_secretaria(secretaria.getNom_secretaria());
+        novaSecretaria.setNom_endereco(secretaria.getNom_endereco());
+        novaSecretaria.setCod_telefone(secretaria.getCod_telefone());
+        novaSecretaria.setSta_secretaria(secretaria.getSta_secretaria());
+        novaSecretaria.setDes_observacao(secretaria.getDes_observacao());
     }
 }

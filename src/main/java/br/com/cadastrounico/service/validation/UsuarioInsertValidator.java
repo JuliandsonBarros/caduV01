@@ -12,9 +12,8 @@ import br.com.cadastrounico.controller.handler.CampoMensagem;
 import br.com.cadastrounico.dto.UsuarioDTO;
 import br.com.cadastrounico.model.Usuario;
 import br.com.cadastrounico.repository.UsuarioRepository;
-import br.com.cadastrounico.service.validaCPF.ValidaCPF;
 
-public class UsuarioInsertValidator implements ConstraintValidator<UsuarioInsert, UsuarioDTO> {
+public class UsuarioInsertValidator implements ConstraintValidator<UsuarioDTO, UsuarioDTO> {
 
 	@Autowired
 	public UsuarioRepository repo;
@@ -29,9 +28,7 @@ public class UsuarioInsertValidator implements ConstraintValidator<UsuarioInsert
 	public boolean isValid(UsuarioDTO objDto, ConstraintValidatorContext context) {
 		List<CampoMensagem> lista = new ArrayList<>();
 		
-		if(!ValidaCPF.isValidCpf(objDto.getCpf())) {
-			lista.add(new CampoMensagem("CPF", "CPF inválido."));
-		}
+		
 		
 		for (CampoMensagem e : lista) {
 			context.disableDefaultConstraintViolation();

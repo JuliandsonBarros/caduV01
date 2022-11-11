@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +27,9 @@ import br.com.cadastrounico.service.HistoricoService;
 import br.com.cadastrounico.service.IPAddress;
 import br.com.cadastrounico.service.SecretariaService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(value = "/secretarias")
+@RequestMapping(value = "/cadu-rest-api/secretarias")
 public class SecretariaController {
 
     @Autowired
@@ -61,15 +63,15 @@ public class SecretariaController {
         model.addAttribute("clienteIPAddress", clientIPAddress);
         hitsService.cadastraHistotico("Cadastro Secretaria", "Secretaria criada",clientIPAddress, LocalDateTime.now());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(secretariaSalva.getId()).toUri();
+                .buildAndExpand(secretariaSalva.getId_secretaria()).toUri();
         return ResponseEntity.ok().build();
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@Valid @RequestBody SecretariaDTO secretariaDTO, @PathVariable Integer id, HttpServletRequest request, Model model) {
     	Secretaria secretariaSalva = service.fromDTO(secretariaDTO);// 
-		secretariaSalva.setId(id);
-		secretariaSalva = service.update(secretariaSalva);
+		secretariaSalva.setId_secretaria(id);
+		secretariaSalva = service.update(secretariaSalva);;
 		String clientIPAddress = ipAdress.getClientIPAddress(request);
 		model.addAttribute("clienteIPAddress", clientIPAddress);
 		hitsService.cadastraHistotico("Cadastro alterado", "Alteração secretaria",clientIPAddress, LocalDateTime.now());

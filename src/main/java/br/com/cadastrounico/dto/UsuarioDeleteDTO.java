@@ -8,20 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.cadastrounico.model.Usuario;
 
 public class UsuarioDeleteDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    private Integer id;
-    private String status;
-    
-    
-	public UsuarioDeleteDTO() {
-	}
-
-	public UsuarioDeleteDTO(Usuario usuario) {
-	    id = usuario.getId();
-        status = usuario.getStatus().toUpperCase();
-        
-}
+	private static final long serialVersionUID = 1L;
 
 	public Integer getId() {
 		return id;
@@ -38,4 +25,16 @@ public class UsuarioDeleteDTO implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	private Integer id;
+	private String status;
+
+	public UsuarioDeleteDTO() {
+	}
+
+	public UsuarioDeleteDTO(Usuario usuario) {
+		id = usuario.getId_usuario();
+		status = usuario.getSta_usuario().toUpperCase();
+	}
+
 }

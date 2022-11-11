@@ -33,29 +33,27 @@ public class UsuarioService {
         return usuario.orElseThrow();
     }
     
-    @Transactional
-    public Usuario insert(Usuario obj){
-        obj.setId(null);
-        repo.save(obj);
-        return obj;
-    }
+	@Transactional
+	public Usuario insert(Usuario obj) {
+		return repo.save(obj);
+	}
     
     public Usuario update(Usuario usuario){
-        Usuario novoUsuario = findId(usuario.getId());
+        Usuario novoUsuario = findId(usuario.getId_usuario());
         atualizaBanco(novoUsuario, usuario);
         return repo.save(novoUsuario);
     }
     
     public Usuario delete(Usuario usuario){
-        Usuario novoUsuario = findId(usuario.getId());
-        	novoUsuario.setStatus("I");
-        	findId(usuario.getId());
+        Usuario novoUsuario = findId(usuario.getId_usuario());
+        	novoUsuario.setSta_usuario("I");
+        	findId(usuario.getId_usuario());
         return repo.save(novoUsuario);
     }
 
 	public Usuario fromDTO(UsuarioDTO objDto){
-        return new Usuario(objDto.getId(), objDto.getNomeCompleto(),objDto.getDataNascimento(),objDto.getEmail(),
-        		objDto.getSexo(),objDto.getCpf(),objDto.getRg(),objDto.getTelefone(),objDto.getStatus());
+        return new Usuario(objDto.getId_usuario(),objDto.getNom_usuario(),objDto.getDta_nascimento(),
+        			objDto.getNom_email(), objDto.getNom_sexo(), objDto.getCod_cpf(),objDto.getCod_rg(),objDto.getCod_telefone(),objDto.getSta_usuario());
     }
     
     public Usuario fromDTO(UsuarioNewDTO objDto){
@@ -71,14 +69,14 @@ public class UsuarioService {
     }
 
     private void atualizaBanco(Usuario novoUsuario, Usuario usuario) {
-        novoUsuario.setNomeCompleto(usuario.getNomeCompleto());
-        novoUsuario.setDataNascimento(usuario.getDataNascimento());
-        novoUsuario.setEmail(usuario.getEmail());
-        novoUsuario.setSexo(usuario.getSexo());
-        novoUsuario.setCpf(usuario.getCpf());
-        novoUsuario.setRg(usuario.getRg());
-        novoUsuario.setTelefone(usuario.getTelefone());
-        novoUsuario.setStatus(usuario.getStatus());
+        novoUsuario.setNom_usuario(usuario.getNom_usuario());
+        novoUsuario.setDta_nascimento(usuario.getDta_nascimento());
+        novoUsuario.setNom_email(usuario.getNom_email());
+        novoUsuario.setNom_sexo(usuario.getNom_sexo());
+        novoUsuario.setCod_cpf(usuario.getCod_cpf());
+        novoUsuario.setCod_rg(usuario.getCod_rg());
+        novoUsuario.setCod_telefone(usuario.getCod_telefone());
+        novoUsuario.setSta_usuario(usuario.getSta_usuario());
     }
     
     
